@@ -1,0 +1,60 @@
+<aura:component controller="multiEditController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="sobjects" type="String[]"/>
+    <aura:handler event="force:refreshView" action="{!c.onselectlistChange}" />
+    <aura:attribute name="finalsobj" type="sobject[]"/>
+    
+    <div class="slds-align--absolute-center slds-text-heading--large">
+        Multi Edit sobjects
+    </div>
+    <div  class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+        <lightning:select name="selectlist" label="Select a sobject to edit:" aura:id="selectlist1id" onchange="{!c.onselectlistChange}">
+            <option value="0">--None--</option>            
+            <aura:iteration items="{!v.sobjects}" var="s"> 
+                <option >{!s}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+    <div class="slds-align--absolute-center">
+        <ui:button label="Save Selected" press="{!c.savedata}" disabled="{!(v.finalsobj.length == 0)? true : false}"/>
+        <ui:button label="Delete Selected" press="{!c.deletedata}" disabled="{!(v.finalsobj.length == 0)? true : false}"/>
+    </div>
+    <div  class="slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+        <table class="slds-table slds-table--bordered slds-table--fixed-layout">            
+            <thead>
+                <tr>
+                    <th scope="col"> 
+                        <div class="slds-truncate" title="select">Select</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Id">Id</div>
+                    </th>
+                    <th scope="col" >
+                        <div class="slds-truncate" title="Name">Name</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.finalsobj}" var="sobj">
+                    <tr>
+                        <td>
+                            <div class="slds-truncate">                                 
+                                <ui:inputCheckbox aura:id="checkval" value="" text="{!sobj.Id}"/>
+                            </div>
+                        </td>
+                        <td data-label="Id">
+                            <div class="slds-truncate">
+                                <ui:outputText value="{!sobj.Id}"/>
+                            </div>
+                        </td>
+                        <td >
+                            <div class="slds-truncate">     
+                                <ui:inputtext value="{!sobj.Name}"/>                                                                 
+                            </div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>

@@ -1,0 +1,6 @@
+#folders to exclude
+/config
+
+#Excecutables
+*.sublime-project
+*.xml
