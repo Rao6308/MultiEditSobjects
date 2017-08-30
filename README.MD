@@ -4,6 +4,6 @@ Aiming to implmenent Lightning data service instead of quering the data. Current
 
 ![ScreenShot](/Screen1.JPG)
 
-![ScreenShot](/Screen1.JPG)
+![ScreenShot](/Screen2.JPG)
 
-![ScreenShot](/Screen1.JPG)
+![ScreenShot](/Screen3.JPG)
